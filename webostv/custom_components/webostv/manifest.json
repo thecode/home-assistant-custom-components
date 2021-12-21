@@ -1,0 +1,10 @@
+{
+  "domain": "webostv",
+  "name": "LG webOS Smart TV",
+  "documentation": "https://www.home-assistant.io/integrations/webostv",
+  "requirements": ["bscpylgtv==0.2.7"],
+"dependencies": ["configurator"],
+  "codeowners": ["@bendavid", "@thecode"],
+  "iot_class": "local_polling",
+  "version": "0.1.0"  
+}
