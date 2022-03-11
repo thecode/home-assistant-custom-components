@@ -8,7 +8,7 @@ from functools import wraps
 import logging
 from typing import Any, TypeVar, cast
 
-from aiowebostv import WebOsClient, WebOsTvPairError
+from .aiowebostv import WebOsClient, WebOsTvPairError
 from typing_extensions import Concatenate, ParamSpec
 
 from homeassistant import util

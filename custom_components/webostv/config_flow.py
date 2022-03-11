@@ -5,7 +5,7 @@ import logging
 from typing import Any
 from urllib.parse import urlparse
 
-from aiowebostv import WebOsTvPairError
+from .aiowebostv import WebOsTvPairError
 import voluptuous as vol
 
 from homeassistant import config_entries, data_entry_flow

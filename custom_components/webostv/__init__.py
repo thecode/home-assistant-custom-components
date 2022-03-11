@@ -10,7 +10,7 @@ import os
 from pickle import loads
 from typing import Any
 
-from aiowebostv import WebOsClient, WebOsTvPairError
+from .aiowebostv import WebOsClient, WebOsTvPairError
 import sqlalchemy as db
 import voluptuous as vol
 
