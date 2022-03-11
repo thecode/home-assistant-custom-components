@@ -98,7 +98,7 @@ class WebOsClient:
     async def connect_handler(self, res):
         """Handle connection for webOS TV."""
         # pylint: disable=too-many-locals,too-many-statements
-        _LOGGER.info("using local aiowebostv client!")
+        _LOGGER.info("Using local aiowebostv client!")
         handler_tasks = set()
         main_ws = None
         input_ws = None
@@ -457,19 +457,34 @@ class WebOsClient:
         """
         self._current_app_id = app_id
 
-        # if self._channels is None:
-        #     try:
-        #         await self.subscribe_channels(self.set_channels_state)
-        #     except WebOsTvCommandError:
-        #         pass
+        _LOGGER.debug("self._channels(%s): %s", self.host, self._channels)
+        if self._channels is None:
+            _LOGGER.debug("fetching channels(%s)", self.host)
+            await asyncio.sleep(4)
+            try:
+                await self.subscribe_channels(self.set_channels_state)
+            except WebOsTvCommandError as ex:
+                _LOGGER.debug(
+                    "subscribe_channels exception(%s): %r", self.host, ex, exc_info=True
+                )
+            _LOGGER.debug("finished fetching channels(%s)", self.host)
 
-        # if app_id == "com.webos.app.livetv" and self._current_channel is None:
-        #     try:
-        #         await self.subscribe_current_channel(self.set_current_channel_state)
-        #     except WebOsTvCommandError:
-        #         pass
+        if app_id == "com.webos.app.livetv" and self._current_channel is None:
+            _LOGGER.debug("fetching current channel(%s)", self.host)
+            await asyncio.sleep(4)
+            try:
+                await self.subscribe_current_channel(self.set_current_channel_state)
+            except WebOsTvCommandError as ex:
+                _LOGGER.debug(
+                    "subscribe_current_channel exception(%s): %r",
+                    self.host,
+                    ex,
+                    exc_info=True,
+                )
+            _LOGGER.debug("finished fetching current channel(%s)", self.host)
 
         if self.state_update_callbacks and self.do_state_update:
+            _LOGGER.debug("set_current_app_state(%s)", self.host)
             await self.do_state_update_callbacks()
 
     async def set_muted_state(self, muted):
