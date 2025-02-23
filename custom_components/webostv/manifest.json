@@ -11,7 +11,7 @@
     "aiowebostv"
   ],
   "requirements": [
-    "git+https://github.com/home-assistant-libs/aiowebostv.git@max-msg-size#aiowebostv==0.7.0"
+    "git+https://github.com/home-assistant-libs/aiowebostv.git@no-livetv#aiowebostv==0.7.0"
   ],
   "ssdp": [
     {
